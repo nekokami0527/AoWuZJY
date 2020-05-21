@@ -9,5 +9,6 @@ QQ群:1067129547
 bilibili视频地址:
 https://www.bilibili.com/video/BV1Bz411b74k/
 
-[图片]
-
+创作者备注:
+请给位Forker们都加一下群，代码问题大家一起在群里交流交流喵~
+也当是尊重尊重作者我好喵~？
