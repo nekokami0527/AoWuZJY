@@ -58,37 +58,7 @@ class NEKOZJY:
 
 	def getSchoolName(self):
 		return self.__SchoolName
-	"""
-	{
-		'code': 1, 
-		'lateCode': 0, 
-		'userId': 'datoawyla5lbeeqnwrjoq', 
-		'userName': '191308043', 
-		'displayName': '张胜勇', 
-		'userType': 1, 
-		'avator': 'https://file.icve.com.cn/ssykt/909/349/E365763D694A95CB61331666AEF70E4C.jpeg?x-oss-process=image/resize,m_fixed,w_50,h_50,limit_0', 
-		'isInitialPwd': 0, 
-		'isSecurityLowPwd': 1, 
-		'isForceUpdatePwdToSecurity': 0, 
-		'schoolId': 'ilqjao6ntkhlrjx88bqrja', 
-		'schoolName': '河北软件职业技术学院', 
-		'schoolCode': 'hbsi', 
-		'schoolLogo': '/common/images/logo.png', 
-		'schoolUrl': 'https://hbsi.zjy2.icve.com.cn', 
-		'versionMode': 2, 
-		'schoolCategory': 0, 
-		'isValid': 1, 
-		'versionType': '2.0', 
-		'isGameTea': 0, 
-		'isNeedConfirmUserName': 0, 
-		'firstUserName': '191308043', 
-		'secondUserName': '', 
-		'token': 'ev8pazcrxy9hucbwjlpalg', 
-		'isEmail': 1, 
-		'mgdCount': 0
-	}
 
-	"""
 	def login(self):
 		form_data = {'userName':self.__username,'userPwd':self.__password,'verifyCode':'2896'}
 		cookies = {'verifycode':'42F091B41696DAE91B17C7CBE7B75237@637234987283152046'}
@@ -377,35 +347,6 @@ class NEKOZJY:
 		if (self.__debug):
 			print(t)
 
-	"""
-	POST /api/common/Directory/stuProcessCellLog HTTP/1.1
-	Host: zjy2.icve.com.cn
-	Connection: keep-alive
-	Content-Length: 191
-	Accept: application/json, text/javascript, */*; q=0.01
-	Sec-Fetch-Dest: empty
-	User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36
-	Content-Type: application/x-www-form-urlencoded; charset=UTF-8
-	Origin: https://hbsi.zjy2.icve.com.cn
-	Sec-Fetch-Site: same-site
-	Sec-Fetch-Mode: cors
-	Referer: https://hbsi.zjy2.icve.com.cn/common/directory/directory.html?courseOpenId=enn0ahrvpdgqcso8am3rw&openClassId=npb8ahrzo1dpmwwilchdw&cellId=iumxaxrv4volcs7w5csag&flag=s&moduleId=vguyaxr04pcvbmt8ouslg
-	Accept-Encoding: gzip, deflate, br
-	Accept-Language: zh-CN,zh;q=0.9
-	Cookie: acw_tc=2f624a0915857235703258231e45f1d552577b95e6c7f34225b104d2982f5f; 
-			Hm_lvt_a3821194625da04fcd588112be734f5b=1585557699,1585723577,1585731399,1585732111;
-			Hm_lpvt_a3821194625da04fcd588112be734f5b=1585732111; 
-			token=74eaazcrg7fhfid3quksg; 
-			TY_SESSION_ID=588bfd3a-dc6c-4122-9355-f281dede2212; 
-			jwplayer.captionLabel=Off; 
-			jwplayer.mute=true; 
-			ASP.NET_SessionId=s5dy3j4jewpqs5qnusdaleky; 
-			verifycode=760D38D0A12ED8BE04A69C226D102CF5@637213601583388693;
-			auth=0102C9F732F421D6D708FEC907DFC575D6D70801156400610074006F006100770079006C00610035006C0062006500650071006E00770072006A006F00710000012F00FF7B4F53A9A7F731E5FC7E95E096CCBB65EFB9FB1B; 
-			token=ubulazcri6rhkvrfk9fv7q
-			
-			
-	"""
 	def Process(self,class_info,tt):
 		if(not self.__KC): return
 		if(class_info['cellPercent']==100 and(
@@ -558,61 +499,6 @@ class NEKOZJY:
 			self.__Frame.addLog("变更速度为%d倍速喵~" % self.speed)
 		else:
 			self.__Frame.addLog("只剩%d倍速了啦，再慢猫猫就要睡着了啦..."%self.speed)
-"""
-	def Process(self,class_info,tt):
-		if(not self.__KC): return
-		if(class_info['cellPercent']==100): return		#进度已经完成
-		if(self.__useLog): self.__Frame.addLog("开始处理课程 [%s]"%class_info['cellName'])
-		else:print("开始处理课程 [%s]"%class_info['cellName'])
-		form_data={'courseOpenId':'','openClassId':'','cellId':'','cellLogId':'','picNum':'0','studyNewlyTime':'0','studyNewlyPicNum':'0','token':''}
-		form_data['courseOpenId'] = class_info['courseOpenId']
-		form_data['openClassId'] = class_info['openClassId']
-		form_data['cellId'] = class_info['cellId']
-		form_data['cellLogId'] = class_info['cellLogId']
-		form_data['token'] = class_info['guIdToken']
-		moduleId = class_info['moduleId']
-		src_addr = class_info['source_addr']
-		extension = class_info['extension']
-		headers = {
-			'Host': 'zjy2.icve.com.cn',
-			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:73.0) Gecko/20100101 Firefox/73.0',
-			'Accept': 'application/json, text/javascript, */*; q=0.01',
-			'Accept-Language': 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
-			'Accept-Encoding': 'gzip, deflate, br',
-			'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-			'X-Requested-With': 'XMLHttpRequest',
-			'Origin': 'https://zjy2.icve.com.cn',
-			'Referer': 'https://zjy2.icve.com.cn/common/directory/directory.html?courseOpenId=%s&openClassId=%s&cellId=%s&flag=s&moduleId=%s'%(form_data['courseOpenId'],form_data['openClassId'],form_data['cellId'],moduleId)
-		}
-		if(extension in ("doc",'pdf')):
-			pagecount = class_info['pageCount']
-			addr = src_addr+"/%s."+extension
-			for i in range(pagecount):
-				addr_tmp = addr % i
-				requests.get(addr_tmp,cookies=self.__login_cookie)
-				time.sleep(5)
-		elif(extension in ('zip','rar','pptx')):
-			requests.get(src_addr, cookies=self.__login_cookie)
-			time.sleep(5)
-		elif(extension in ('mp4','swf')):
-			requests.get(src_addr, cookies=self.__login_cookie)
-			times = int(class_info['audioVideoLong'])
-			if times > 60:
-				times = 60
-			time.sleep(times)
-		elif(extension in ('mp3')):
-			addr = src_addr + "\/%s\." + extension
-			addr = addr%"file"
-			requests.get(src_addr, cookies=self.__login_cookie)
-			times = int(class_info['audioVideoLong'])
-			if times > 60:
-				times = 60
-			time.sleep(times)
-		else:
-			requests.get(src_addr, cookies=self.__login_cookie)
-			if not ZS:
-				time.sleep(5)
-"""
 
 
 class NEKOFace:
@@ -890,19 +776,7 @@ class NEKOFace:
 
 
 def VersionCheck():
-	version = "62adc05d5373c83d436c984df2dd2805" #md5(neko_3.4.0)
-	api = "http://auth.neko.wiki/version.php?version="
-	try:
-		jsdata = json.loads(requests.get(api+version).content)
-		if(jsdata['code'] == 0):
-			return True,None
-		elif(jsdata['code'] == 1):
-			return True,jsdata['msg']
-		elif(jsdata['code'] == -1):
-			return False,jsdata['msg']
-	except:
-		pass
-	return False,"服务器版本校验异常"
+	return True,None
 
 
 
